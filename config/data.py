@@ -22,8 +22,14 @@ HOME_DIR = os.path.expanduser("~")
 CONFIG_DIR = os.path.expanduser(f"~/.config/{APP_NAME}")
 
 screen = Gdk.Screen.get_default()
-CURRENT_WIDTH = screen.get_width()
-CURRENT_HEIGHT = screen.get_height()
+if screen is not None:
+    CURRENT_WIDTH = screen.get_width()
+    CURRENT_HEIGHT = screen.get_height()
+else:
+    print("Error: Unable to get screen information. GDK may not be initialized.")
+    CURRENT_WIDTH = 1920  # Default resolution
+    CURRENT_HEIGHT = 1080  # Default resolution
+
 
 # Rename to match what's being imported in config.py
 WALLPAPERS_DIR_DEFAULT = get_relative_path("../assets/wallpapers_example")
