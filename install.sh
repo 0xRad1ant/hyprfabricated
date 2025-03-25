@@ -6,41 +6,6 @@ set -o pipefail  # Prevent errors in a pipeline from being masked
 
 REPO_URL="https://github.com/0xrad1ant/hyprfabricated.git"
 INSTALL_DIR="$HOME/.config/hyprfabricated"
-PACKAGES=(
-    brightnessctl
-    cava
-    fabric-cli-git
-    gnome-bluetooth-3.0
-    gobject-introspection
-    gpu-screen-recorder
-    grimblast
-    hypridle
-    hyprlock
-    hyprpicker
-    hyprsunset
-    imagemagick
-    libnotify
-    matugen-bin
-    noto-fonts-emoji
-    playerctl
-    python-fabric-git
-    python-ijson
-    python-pillow
-    python-psutil
-    python-requests
-    python-setproctitle
-    python-toml
-    python-watchdog
-    swappy
-    swww
-    uwsm
-    wl-clipboard
-    wlinhibit
-    tesseract
-    plasma-browser-integration
-    cantarell-fonts
-    ttf-jost
-)
 
 # Prevent running as root
 if [ "$(id -u)" -eq 0 ]; then
@@ -74,12 +39,6 @@ else
     git clone --depth=1 "$REPO_URL" "$INSTALL_DIR"
 fi
 
-# Install required packages using the detected AUR helper (only if missing)
-echo "Installing required packages..."
-$aur_helper -Syy --needed --devel --noconfirm "${PACKAGES[@]}" || true
-
-echo "Installing gray-git..."
-yes | $aur_helper -Syy --needed --devel --noconfirm gray-git || true
 
 echo "Installing required fonts..."
 
